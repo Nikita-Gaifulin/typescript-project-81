@@ -1,20 +1,20 @@
 import Tag from './Tag.js'
 
-console.log(new Tag("br").toString());
+console.log(new Tag('br').toString())
 // <br>
 
-console.log(new Tag("img", { src: "path/to/image" }).toString());
+console.log(new Tag('img', { src: 'path/to/image' }).toString())
 // <img src="path/to/image">
 
-console.log(new Tag("input", { type: "submit", value: "Save" }).toString());
+console.log(new Tag('input', { type: 'submit', value: 'Save' }).toString())
 // <input type="submit" value="Save">
 
 // Для парных тегов надо придумать как лучше
-console.log(new Tag("label", {}, "Email").toString());
+console.log(new Tag('label', {}, 'Email').toString())
 // <label>Email</label>
 
-console.log(new Tag("label", { for: "email" }, "Email").toString());
+console.log(new Tag('label', { for: 'email' }, 'Email').toString())
 // <label for="email">Email</label>
 
-console.log(new Tag("div").toString());
+console.log(new Tag('div').toString())
 // <div></div>
