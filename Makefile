@@ -1,20 +1,20 @@
 install:
-    npm ci
+	npm ci
 
 develop:
-    npm run start:dev
+	npm run start:dev
 
 build:
-    npm run build
+	npm run build
 
 start:
-    npm run start
+	npm run start
 
 test:
-    npm run test
+	npm run test
 
 lint:
-    npm run lint
+	npm run lint
 
 test-coverage:
-    npm run coverage
+	npm run coverage
