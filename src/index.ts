@@ -1,5 +1,5 @@
 import Tag from './Tag.js'
-import HexletCode from './HexletCode.js'
+import Form from './Form.js'
 
 console.log(new Tag('br').toString())
 // <br>
@@ -21,12 +21,12 @@ console.log(new Tag('div').toString())
 // <div></div>
 
 const template = { name: 'rob', job: 'hexlet', gender: 'm' }
-let form = new HexletCode().formFor(template, {}, () => {})
+let form = new Form().formFor(template, {}, () => {})
 // <form action="#" method="post"></form>
 
 console.log(form);
 
-form = new HexletCode().formFor(template, {url: '/users'}, () => {});
+form = new Form().formFor(template, {url: '/users'}, () => {});
 // <form action="/users" method="post"></form>
 
 

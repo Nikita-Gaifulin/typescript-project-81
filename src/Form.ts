@@ -1,4 +1,4 @@
-class HexletCode
+class Form
 {
   formFor(template: { name: string, job: string, gender: string }, options: { url?: string }, _callback: (f: unknown) => void): string {
     const action = options.url || '#'
@@ -7,4 +7,4 @@ class HexletCode
   }
 }
 
-export default HexletCode
+export default Form

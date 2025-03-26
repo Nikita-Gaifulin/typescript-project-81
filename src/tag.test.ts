@@ -6,9 +6,9 @@ test('<br> tag layout', () => {
 })
 
 test('<img> tag layout', () => {
-  expect(new Tag('img', { alt: 'someImg', class: 'someImg', atr: 'sdsdd' }).toString()).toBe('<img alt="someImg" class="someImg" atr="sdsdd">')
+  expect(new Tag('img', { alt: 'someImg', class: 'someImg', atr: 'test' }).toString()).toBe('<img alt="someImg" class="someImg" atr="test">')
 })
 
 test('<div> tag layout', () => {
-  expect(new Tag('div', {}, 'ghbdtn').toString()).toBe('<div>ghbdtn</div>')
+  expect(new Tag('div', {}, 'test').toString()).toBe('<div>test</div>')
 })
