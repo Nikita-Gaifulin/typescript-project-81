@@ -29,5 +29,38 @@ console.log(form);
 form = new Form().formFor(template, {url: '/users'}, () => {});
 // <form action="/users" method="post"></form>
 
-
 console.log(form)
+
+form = new Form().formFor(template, { method: 'post' }, (f) => {
+  f.input('name');
+  f.input('job', { as: 'textarea' });
+});
+
+console.log(form);
+
+form = new Form().formFor(template, {}, (f) => {
+    f.input('name', {class: 'user-input'});
+    f.input('job');
+})
+console.log(form);
+
+form = new Form().formFor(template, {}, (f) =>
+    f.input('job', { as: 'textarea' }));
+  
+  // <form action="#" method="post">
+  //   <textarea name="job" cols="20" rows="40">hexlet</textarea>
+  // </form>
+  console.log(form)
+
+form = new Form().formFor(template, { url: '#' }, (f) =>
+    f.input('job', { as: 'textarea', rows: 50, cols: 50}));
+
+  console.log(form)
+
+  form = new Form().formFor(template, { url: '/users' }, (f) => {
+    f.input('name');
+    f.input('job', { as: 'textarea' });
+    f.input('age');
+  })
+
+  console.log(form)

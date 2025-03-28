@@ -1,3 +1,11 @@
+# Example
+```
+form = new Form().formFor(template, {}, (f) => {
+    f.input('name', {class: 'user-input'});
+    f.input('job');
+})
+```
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Nikita-Gaifulin/typescript-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Nikita-Gaifulin/typescript-project-81/actions)
 
