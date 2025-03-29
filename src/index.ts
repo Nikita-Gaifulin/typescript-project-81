@@ -26,6 +26,14 @@ let form = new Form().formFor(template, {}, () => {})
 
 console.log(form);
 
+form = new Form().formFor(template, { method: 'post' }, (f) => {
+  f.input('name');
+  f.input('job');
+  f.submit('Wow');
+})
+
+console.log(form)
+
 form = new Form().formFor(template, {url: '/users'}, () => {});
 // <form action="/users" method="post"></form>
 
@@ -64,3 +72,5 @@ form = new Form().formFor(template, { url: '#' }, (f) =>
   })
 
   console.log(form)
+
+  

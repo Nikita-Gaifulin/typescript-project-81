@@ -33,12 +33,12 @@ test('generates textarea when specified', () => {
 
 test('overrides default textarea attributes', () => {
   const html = new Form().formFor(template, {}, (f) => 
-    f.input('job', { as: 'textarea', rows: 50, cols: 50 }));
+    f.input('job', { as: 'textarea', rows: 50, cols: 50 }))
   
   expect(html).toContain(
     '<textarea cols="50" rows="50" name="job">hexlet</textarea>'
-  );
-});
+  )
+})
 
 test('test textarea', () => {
   const html = new Form().formFor(template, {}, (f) =>
@@ -50,4 +50,10 @@ test('throws error for non-existent field', () => {
   expect(() => {
     new Form().formFor(template, {}, (f) => f.input('age')); // Поле 'age' отсутствует
   }).toThrowError("Field 'age' does not exist in the template.");
+});
+
+test('throws error for non-existent field', () => {
+  const html = new Form().formFor(template, {}, (f) => f.submit('Save'))
+
+  expect(html).toContain('<input type="submit" value="Save">')
 });

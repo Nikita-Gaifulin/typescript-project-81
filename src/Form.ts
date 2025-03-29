@@ -36,9 +36,13 @@ class Form
     }
   }
 
+  submit(value: string): void {
+    this.formFields.push(`<input type="submit" value="${value}">`)
+  }
+
   private generateInput(name: string, value: unknown, attributes: Record<string, unknown>): void {
-    const attrs = this.buildAttributes({ ...attributes, type: 'text', name, value });
-    this.formFields.push(`<input${attrs}>`);
+    const attrs = this.buildAttributes({ ...attributes, type: 'text', name, value })
+    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label>\n<input${attrs}>`)
   }
 
   private generateTextarea(name: string, value: unknown, attributes: Record<string, unknown>): void {
