@@ -1,8 +1,7 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
-      "outDir": ".\\dist",
-      "rootDir": ".\\src",
+      "outDir": ".dist",
       "module": "ESNext",
       "target": "ES2022",
       "moduleResolution": "node",
@@ -10,12 +9,8 @@
       "forceConsistentCasingInFileNames": true,  // Важно для Windows!
       "skipLibCheck": true
   },
-  "include": ["src\\**\\*"],
+  "include": ["**/*"],
   "exclude": [
-      "dist",
       "node_modules",
-      "**\\*.test.ts",
-      "vitest.config.ts",
-      "eslint.config.js"
     ]
   }

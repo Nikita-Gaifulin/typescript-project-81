@@ -1,5 +1,4 @@
-class Form
-{
+class Form {
   private formFields: string[] = []
   private template!: Record<string, unknown>
 
@@ -8,13 +7,13 @@ class Form
     const form = new Form()
     form.template = this.template
     _callback(form)
-    const action = options.url || '#'
-    const method = options.method || 'post'
-    const fieldsHtml = form.formFields.join('\n');
+    const action = options.url ?? '#'
+    const method = options.method ?? 'post'
+    const fieldsHtml = form.formFields.join('\n')
 
     // Если нет полей, возвращаем форму без переносов
     if (form.formFields.length === 0) {
-      return `<form action="${action}" method="${method}"></form>`;
+      return `<form action="${action}" method="${method}"></form>`
     }
 
     return `<form action="${action}" method="${method}">\n${fieldsHtml}\n</form>`
@@ -22,17 +21,18 @@ class Form
 
   input(fieldName: string, attributes: Record<string, unknown> = {}): void {
     if (!this.template || !(fieldName in this.template)) {
-      throw new Error(`Field '${fieldName}' does not exist in the template.`);
+      throw new Error(`Field '${fieldName}' does not exist in the template.`)
     }
 
-    const fieldValue = this.template[fieldName];
-    const fieldType = attributes.as || 'input';
+    const fieldValue = this.template[fieldName]
+    const fieldType = attributes.as ?? 'input'
     delete attributes.as
 
     if (fieldType === 'textarea') {
-      this.generateTextarea(fieldName, fieldValue, attributes);
-    } else {
-      this.generateInput(fieldName, fieldValue, attributes);
+      this.generateTextarea(fieldName, fieldValue, attributes)
+    }
+    else {
+      this.generateInput(fieldName, fieldValue, attributes)
     }
   }
 
@@ -46,16 +46,16 @@ class Form
   }
 
   private generateTextarea(name: string, value: unknown, attributes: Record<string, unknown>): void {
-    const defaultAttrs = { cols: '20', rows: '40' };
-    const mergedAttrs = { ...defaultAttrs, ...attributes, name };
-    const attrs = this.buildAttributes(mergedAttrs);
-    this.formFields.push(`<textarea${attrs}>${value}</textarea>`);
+    const defaultAttrs = { cols: '20', rows: '40' }
+    const mergedAttrs = { ...defaultAttrs, ...attributes, name }
+    const attrs = this.buildAttributes(mergedAttrs)
+    this.formFields.push(`<textarea${attrs}>${value as string}</textarea>`)
   }
 
   private buildAttributes(attributes: Record<string, unknown>): string {
     return Object.entries(attributes)
       .filter(([_, value]) => value !== undefined)
-      .map(([key, value]) => ` ${key}="${value}"`)
+      .map(([key, value]) => ` ${key}="${value as string}"`)
       .join('')
   }
 }

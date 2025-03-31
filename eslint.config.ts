@@ -25,8 +25,9 @@ export default [
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    // rules: {
-    //   '@typescript-eslint/no-unused-vars': 'off',
-    // },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+    },
   },
 ] // satisfies Linter.Config[]
