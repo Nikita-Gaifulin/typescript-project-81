@@ -1,5 +1,5 @@
 import Tag from './Tag.js'
-import Form from './Form.js'
+import HexletCode from './Form.js'
 
 console.log(new Tag('br').toString())
 // <br>
@@ -21,12 +21,12 @@ console.log(new Tag('div').toString())
 // <div></div>
 
 const template = { name: 'rob', job: 'hexlet', gender: 'm' }
-let form = new Form().formFor(template, {}, () => {})
+let form = new HexletCode().formFor(template, {}, () => {})
 // <form action="#" method="post"></form>
 
 console.log(form)
 
-form = new Form().formFor(template, { method: 'post' }, (f) => {
+form = new HexletCode().formFor(template, { method: 'post' }, (f) => {
   f.input('name')
   f.input('job')
   f.submit('Wow')
@@ -34,25 +34,25 @@ form = new Form().formFor(template, { method: 'post' }, (f) => {
 
 console.log(form)
 
-form = new Form().formFor(template, { url: '/users' }, () => {})
+form = new HexletCode().formFor(template, { url: '/users' }, () => {})
 // <form action="/users" method="post"></form>
 
 console.log(form)
 
-form = new Form().formFor(template, { method: 'post' }, (f) => {
+form = new HexletCode().formFor(template, { method: 'post' }, (f) => {
   f.input('name')
   f.input('job', { as: 'textarea' })
 })
 
 console.log(form)
 
-form = new Form().formFor(template, {}, (f) => {
+form = new HexletCode().formFor(template, {}, (f) => {
   f.input('name', { class: 'user-input' })
   f.input('job')
 })
 console.log(form)
 
-form = new Form().formFor(template, {}, f =>
+form = new HexletCode().formFor(template, {}, f =>
   f.input('job', { as: 'textarea' }))
 
 // <form action="#" method="post">
@@ -60,12 +60,12 @@ form = new Form().formFor(template, {}, f =>
 // </form>
 console.log(form)
 
-form = new Form().formFor(template, { url: '#' }, f =>
+form = new HexletCode().formFor(template, { url: '#' }, f =>
   f.input('job', { as: 'textarea', rows: 50, cols: 50 }))
 
 console.log(form)
 
-form = new Form().formFor(template, { url: '/users' }, (f) => {
+form = new HexletCode().formFor(template, { url: '/users' }, (f) => {
   f.input('name')
   f.input('job', { as: 'textarea' })
   f.input('age')

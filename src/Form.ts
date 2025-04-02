@@ -1,10 +1,10 @@
-class Form {
+class HexletCode {
   private formFields: string[] = []
   private template!: Record<string, unknown>
 
-  formFor(template: { name: string, job: string, gender: string }, options: { url?: string, method?: string }, _callback: (f: Form) => void): string {
+  formFor(template: { name: string, job: string, gender: string }, options: { url?: string, method?: string }, _callback: (f: HexletCode) => void): string {
     this.template = template
-    const form = new Form()
+    const form = new HexletCode()
     form.template = this.template
     _callback(form)
     const action = options.url ?? '#'
@@ -60,4 +60,4 @@ class Form {
   }
 }
 
-export default Form
+export default HexletCode
