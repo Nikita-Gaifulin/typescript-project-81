@@ -1,19 +1,8 @@
-class HexletCode {
-    formFields = [];
+class HexletCodeBuilder {
     template;
-    formFor(template, options, _callback) {
+    formFields = [];
+    constructor(template) {
         this.template = template;
-        const form = new HexletCode();
-        form.template = this.template;
-        _callback(form);
-        const action = options.url ?? '#';
-        const method = options.method ?? 'post';
-        const fieldsHtml = form.formFields.join('\n');
-        // Если нет полей, возвращаем форму без переносов
-        if (form.formFields.length === 0) {
-            return `<form action="${action}" method="${method}"></form>`;
-        }
-        return `<form action="${action}" method="${method}">\n${fieldsHtml}\n</form>`;
     }
     input(fieldName, attributes = {}) {
         if (!this.template || !(fieldName in this.template)) {
@@ -47,6 +36,20 @@ class HexletCode {
             .filter(([value]) => value !== undefined)
             .map(([key, value]) => ` ${key}="${value}"`)
             .join('');
+    }
+}
+class HexletCode {
+    static formFor(template, options, _callback) {
+        const form = new HexletCodeBuilder(template);
+        _callback(form);
+        const action = options.url ?? '#';
+        const method = options.method ?? 'post';
+        const fieldsHtml = form.formFields.join('\n');
+        // Если нет полей, возвращаем форму без переносов
+        if (form.formFields.length === 0) {
+            return `<form action="${action}" method="${method}"></form>`;
+        }
+        return `<form action="${action}" method="${method}">\n${fieldsHtml}\n</form>`;
     }
 }
 export default HexletCode;

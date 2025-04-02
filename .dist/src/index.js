@@ -14,36 +14,36 @@ console.log(new Tag('label', { for: 'email' }, 'Email').toString());
 console.log(new Tag('div').toString());
 // <div></div>
 const template = { name: 'rob', job: 'hexlet', gender: 'm' };
-let form = new HexletCode().formFor(template, {}, () => { });
+let form = HexletCode.formFor(template, {}, () => { });
 // <form action="#" method="post"></form>
 console.log(form);
-form = new HexletCode().formFor(template, { method: 'post' }, (f) => {
+form = HexletCode.formFor(template, { method: 'post' }, (f) => {
     f.input('name');
     f.input('job');
     f.submit('Wow');
 });
 console.log(form);
-form = new HexletCode().formFor(template, { url: '/users' }, () => { });
+form = HexletCode.formFor(template, { url: '/users' }, () => { });
 // <form action="/users" method="post"></form>
 console.log(form);
-form = new HexletCode().formFor(template, { method: 'post' }, (f) => {
+form = HexletCode.formFor(template, { method: 'post' }, (f) => {
     f.input('name');
     f.input('job', { as: 'textarea' });
 });
 console.log(form);
-form = new HexletCode().formFor(template, {}, (f) => {
+form = HexletCode.formFor(template, {}, (f) => {
     f.input('name', { class: 'user-input' });
     f.input('job');
 });
 console.log(form);
-form = new HexletCode().formFor(template, {}, f => f.input('job', { as: 'textarea' }));
+form = HexletCode.formFor(template, {}, f => f.input('job', { as: 'textarea' }));
 // <form action="#" method="post">
 //   <textarea name="job" cols="20" rows="40">hexlet</textarea>
 // </form>
 console.log(form);
-form = new HexletCode().formFor(template, { url: '#' }, f => f.input('job', { as: 'textarea', rows: 50, cols: 50 }));
+form = HexletCode.formFor(template, { url: '#' }, f => f.input('job', { as: 'textarea', rows: 50, cols: 50 }));
 console.log(form);
-form = new HexletCode().formFor(template, { url: '/users' }, (f) => {
+form = HexletCode.formFor(template, { url: '/users' }, (f) => {
     f.input('name');
     f.input('job', { as: 'textarea' });
     f.input('age');

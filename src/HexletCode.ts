@@ -1,22 +1,9 @@
-class HexletCode {
-  private formFields: string[] = []
+class HexletCodeBuilder {
   private template!: Record<string, unknown>
+  public formFields: string[] = []
 
-  formFor(template: { name: string, job: string, gender: string }, options: { url?: string, method?: string }, _callback: (f: HexletCode) => void): string {
+  constructor(template: Record<string, unknown>) {
     this.template = template
-    const form = new HexletCode()
-    form.template = this.template
-    _callback(form)
-    const action = options.url ?? '#'
-    const method = options.method ?? 'post'
-    const fieldsHtml = form.formFields.join('\n')
-
-    // Если нет полей, возвращаем форму без переносов
-    if (form.formFields.length === 0) {
-      return `<form action="${action}" method="${method}"></form>`
-    }
-
-    return `<form action="${action}" method="${method}">\n${fieldsHtml}\n</form>`
   }
 
   input(fieldName: string, attributes: Record<string, unknown> = {}): void {
@@ -57,6 +44,23 @@ class HexletCode {
       .filter(([value]) => value !== undefined)
       .map(([key, value]) => ` ${key}="${value as string}"`)
       .join('')
+  }
+}
+
+class HexletCode {
+  static formFor(template: { name: string, job: string, gender: string }, options: { url?: string, method?: string }, _callback: (f: HexletCodeBuilder) => void): string {
+    const form = new HexletCodeBuilder(template)
+    _callback(form)
+    const action = options.url ?? '#'
+    const method = options.method ?? 'post'
+    const fieldsHtml = form.formFields.join('\n')
+
+    // Если нет полей, возвращаем форму без переносов
+    if (form.formFields.length === 0) {
+      return `<form action="${action}" method="${method}"></form>`
+    }
+
+    return `<form action="${action}" method="${method}">\n${fieldsHtml}\n</form>`
   }
 }
 
