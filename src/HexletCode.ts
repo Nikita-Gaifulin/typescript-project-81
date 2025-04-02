@@ -28,15 +28,15 @@ class HexletCodeBuilder {
   }
 
   private generateInput(name: string, value: unknown, attributes: Record<string, unknown>): void {
-    const attrs = this.buildAttributes({ ...attributes, type: 'text', name, value })
-    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label>\n<input${attrs}>`)
+    const attrs = this.buildAttributes({ ...attributes, name, type: 'text', value })
+    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label><input${attrs}>`)
   }
 
   private generateTextarea(name: string, value: unknown, attributes: Record<string, unknown>): void {
     const defaultAttrs = { cols: '20', rows: '40' }
     const mergedAttrs = { ...defaultAttrs, ...attributes, name }
     const attrs = this.buildAttributes(mergedAttrs)
-    this.formFields.push(`<textarea${attrs}>${value as string}</textarea>`)
+    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label><textarea${attrs}>${value as string}</textarea>`)
   }
 
   private buildAttributes(attributes: Record<string, unknown>): string {

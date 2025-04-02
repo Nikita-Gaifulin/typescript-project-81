@@ -22,7 +22,7 @@ test('formFor always uses POST method', () => {
 
 test('generates text input by default', () => {
   const html = HexletCode.formFor(template, {}, f => f.input('name'))
-  expect(html).toContain('<input type="text" name="name" value="rob">')
+  expect(html).toContain('<input name="name" type="text" value="rob">')
 })
 
 test('generates textarea when specified', () => {
@@ -43,7 +43,7 @@ test('overrides default textarea attributes', () => {
 test('test textarea', () => {
   const html = HexletCode.formFor(template, {}, f =>
     f.input('job', { as: 'textarea' }))
-  expect(html).toBe('<form action="#" method="post"><textarea cols="20" rows="40" name="job">hexlet</textarea></form>')
+  expect(html).toBe('<form action="#" method="post"><label for="job">Job</label><textarea cols="20" rows="40" name="job">hexlet</textarea></form>')
 })
 
 test('throws error for non-existent field', () => {
