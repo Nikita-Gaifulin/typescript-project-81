@@ -43,7 +43,7 @@ test('overrides default textarea attributes', () => {
 test('test textarea', () => {
   const html = HexletCode.formFor(template, {}, f =>
     f.input('job', { as: 'textarea' }))
-  expect(html).toBe('<form action="#" method="post">\n<textarea cols="20" rows="40" name="job">hexlet</textarea>\n</form>')
+  expect(html).toBe('<form action="#" method="post"><textarea cols="20" rows="40" name="job">hexlet</textarea></form>')
 })
 
 test('throws error for non-existent field', () => {

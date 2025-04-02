@@ -53,14 +53,14 @@ class HexletCode {
     _callback(form)
     const action = options.url ?? '#'
     const method = options.method ?? 'post'
-    const fieldsHtml = form.formFields.join('\n')
+    const fieldsHtml = form.formFields.join(' ')
 
     // Если нет полей, возвращаем форму без переносов
     if (form.formFields.length === 0) {
-      return `<form method="${method}" action="${action}"></form>`
+      return `<form action="${action}" method="${method}"></form>`
     }
 
-    return `<form method="${method}" action="${action}">\n${fieldsHtml}\n</form>`
+    return `<form action="${action}" method="${method}">${fieldsHtml}</form>`
   }
 }
 
