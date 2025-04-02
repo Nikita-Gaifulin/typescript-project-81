@@ -5,12 +5,12 @@ const template = { name: 'rob', job: 'hexlet', gender: 'm' }
 
 test('formFor returns default form without options', () => {
   const result = HexletCode.formFor(template, {}, () => {})
-  expect(result).toBe('<form action="#" method="post"></form>')
+  expect(result).toBe('<form method="post" action="#"></form>')
 })
 
 test('formFor uses provided URL in action attribute', () => {
   const result = HexletCode.formFor(template, { url: '/users' }, () => {})
-  expect(result).toBe('<form action="/users" method="post"></form>')
+  expect(result).toBe('<form method="post" action="/users"></form>')
 })
 
 test('formFor always uses POST method', () => {
@@ -43,7 +43,7 @@ test('overrides default textarea attributes', () => {
 test('test textarea', () => {
   const html = HexletCode.formFor(template, {}, f =>
     f.input('job', { as: 'textarea' }))
-  expect(html).toBe('<form action="#" method="post"><label for="job">Job</label><textarea cols="20" rows="40" name="job">hexlet</textarea></form>')
+  expect(html).toBe('<form method="post" action="#"><label for="job">Job</label><textarea cols="20" rows="40" name="job">hexlet</textarea></form>')
 })
 
 test('throws error for non-existent field', () => {
