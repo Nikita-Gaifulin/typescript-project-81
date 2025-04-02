@@ -54,7 +54,7 @@ class Form {
 
   private buildAttributes(attributes: Record<string, unknown>): string {
     return Object.entries(attributes)
-      .filter(([_, value]) => value !== undefined)
+      .filter(([value]) => value !== undefined)
       .map(([key, value]) => ` ${key}="${value as string}"`)
       .join('')
   }
