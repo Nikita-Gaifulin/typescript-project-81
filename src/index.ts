@@ -1,5 +1,5 @@
 import Tag from './Tag.js'
-import HexletCode from './Form.js'
+import HexletCode from './HexletCode.js'
 
 console.log(new Tag('br').toString())
 // <br>

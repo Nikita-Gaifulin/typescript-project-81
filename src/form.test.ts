@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest'
-import HexletCode from '../src/Form.js'
+import HexletCode from './HexletCode.js'
 
 const template = { name: 'rob', job: 'hexlet', gender: 'm' }
 
