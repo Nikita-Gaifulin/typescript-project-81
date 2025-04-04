@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "Form Generator",
-  "main": "src/HexletCode.ts",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "lint": "eslint .",
