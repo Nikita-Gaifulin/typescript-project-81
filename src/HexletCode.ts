@@ -1,3 +1,5 @@
+import Tag from '../src/Tag.js'
+
 class HexletCodeBuilder {
   private template!: Record<string, unknown>
   public formFields: string[] = []
@@ -24,26 +26,31 @@ class HexletCodeBuilder {
   }
 
   submit(value: string): void {
-    this.formFields.push(`<input type="submit" value="${value}">`)
+    this.formFields.push(new Tag('input', { type: 'submit', value: value }).toString())
+  }
+
+  private convertToStringRecord(obj: Record<string, unknown>): Record<string, string> {
+    const result: Record<string, string> = {}
+
+    for (const key in obj) {
+      if (typeof obj[key] !== 'string') {
+        result[key] = String(obj[key])
+      }
+      else {
+        result[key] = obj[key]
+      }
+    }
+
+    return result
   }
 
   private generateInput(name: string, value: unknown, attributes: Record<string, unknown>): void {
-    const attrs = this.buildAttributes({ ...attributes, name, type: 'text', value })
-    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label><input${attrs}>`)
+    this.formFields.push(new Tag('label', { for: name }, name.charAt(0).toUpperCase() + name.slice(1)).toString() + new Tag('input', this.convertToStringRecord({ ...attributes, name, type: 'text', value })).toString())
   }
 
   private generateTextarea(name: string, value: unknown, attributes: Record<string, unknown>): void {
     const defaultAttrs = { cols: '20', rows: '40' }
-    const mergedAttrs = { ...defaultAttrs, ...attributes, name }
-    const attrs = this.buildAttributes(mergedAttrs)
-    this.formFields.push(`<label for="${name}">${name.charAt(0).toUpperCase() + name.slice(1)}</label><textarea${attrs}>${value as string}</textarea>`)
-  }
-
-  private buildAttributes(attributes: Record<string, unknown>): string {
-    return Object.entries(attributes)
-      .filter(([value]) => value !== undefined)
-      .map(([key, value]) => ` ${key}="${value as string}"`)
-      .join('')
+    this.formFields.push(new Tag('label', { for: name }, name.charAt(0).toUpperCase() + name.slice(1)).toString() + new Tag('textarea', this.convertToStringRecord({ ...defaultAttrs, ...attributes, name }), value as string).toString())
   }
 }
 
@@ -57,10 +64,10 @@ class HexletCode {
 
     // Если нет полей, возвращаем форму без переносов
     if (form.formFields.length === 0) {
-      return `<form method="${method}" action="${action}"></form>`
+      return new Tag('form', { method: method, action: action }).toString()
     }
 
-    return `<form method="${method}" action="${action}">${fieldsHtml}</form>`
+    return new Tag('form', { method: method, action: action }, fieldsHtml).toString()
   }
 }
 
