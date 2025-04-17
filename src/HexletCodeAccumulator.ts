@@ -1,30 +1,36 @@
 import { ITemplateOptions, InputOptions } from './interfaces'
 
 export class HexletCodeAccumulator {
-  private template!: Record<string, string>
-  private templateOptions: ITemplateOptions[] = []
+  private _template!: Record<string, string>
+  private _templateOptions: ITemplateOptions[] = []
+  private _options: { url?: string, method?: string }
 
-  constructor(template: Record<string, string>) {
-    this.template = template
+  constructor(template: Record<string, string>, options: { url?: string, method?: string }) {
+    this._template = template
+    this._options = options
   }
 
-  get getTemplateOptions() {
-    return this.templateOptions
+  get templateOptions() {
+    return this._templateOptions
+  }
+
+  get formOptions() {
+    return this._options
   }
 
   input(fieldName: string, attributes: InputOptions & Record<string, string | number> = {}): void {
-    if (!this.template || !(fieldName in this.template)) {
+    if (!this._template || !(fieldName in this._template)) {
       throw new Error(`Field '${fieldName}' does not exist in the template.`)
     }
 
-    const fieldValue = this.template[fieldName]
+    const fieldValue = this._template[fieldName]
     const fieldType = attributes.as ?? 'input'
     delete attributes.as
 
-    this.templateOptions.push({ fieldName, fieldValue, attributes, fieldType })
+    this._templateOptions.push({ fieldName, fieldValue, attributes, fieldType })
   }
 
   submit(value: string): void {
-    this.templateOptions.push({ fieldName: 'input', fieldValue: value, fieldType: 'submit' })
+    this._templateOptions.push({ fieldName: 'input', fieldValue: value, fieldType: 'submit' })
   }
 }
