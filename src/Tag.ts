@@ -1,9 +1,11 @@
+import { ITemplate } from './interfaces'
+
 class Tag {
   private tagName: string
-  private attributes: Record<string, string>
+  private attributes: ITemplate
   private text: string
 
-  constructor(tagName: string, attributes: Record<string, string> = {}, text = '') {
+  constructor(tagName: string, attributes: ITemplate = {}, text = '') {
     this.tagName = tagName
     this.attributes = attributes
     this.text = text

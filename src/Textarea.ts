@@ -1,9 +1,10 @@
+import { ITemplate } from './interfaces.js'
 import Tag from './Tag.js'
 
 export default class Textarea {
   stringLine: string[] = []
   defaultAttrs = { cols: '20', rows: '40' }
-  constructor(public attrs: Record<string, string> = {}, public placeholder = '', public withLabel = false) {}
+  constructor(public attrs: ITemplate = {}, public placeholder = '', public withLabel = false) {}
 
   public toString(): string {
     if (this.withLabel) {

@@ -1,10 +1,10 @@
 import Input from './Input'
-import { ITemplateOptions } from './interfaces'
+import { ITemplateOptions, RequestOptions } from './interfaces'
 import Tag from './Tag'
 import Textarea from './Textarea'
 
 export class Form {
-  static getHtml(fieldsOptions: ITemplateOptions[], options: { url?: string, method?: string }): string {
+  static getHtml(fieldsOptions: ITemplateOptions[], options: RequestOptions): string {
     const action = options.url ?? '#'
     const method = options.method ?? 'post'
     const fieldsHtml = fieldsOptions.map((field) => {
